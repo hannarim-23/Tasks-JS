@@ -49,22 +49,40 @@ console.log(`\n 4.	Задача с интервью*
 Еще: ['(', ')', '(', '(', '(', ')', '}', '(', ')', ')']
 */
 
-function brackets(arr){
-  console.log(arr);
-  let rightDate = ['{', '}', '[',']', '(', ')'];
+function brackets(arr) {
+  let rightDate = ['{', '}', '[', ']', '(', ')'];
   let newArr = [];
+  let stack = [];
 
-  arr.forEach(x=> (rightDate.includes(x)?newArr.push(x):false))
-  console.log(newArr);
-  
-  
+  arr.forEach((x) => (rightDate.includes(x) ? newArr.push(x) : false));
+  //console.log(newArr);
 
+  for (let i = 0; i < newArr.length; i++) {
+    const item = newArr[i];
 
+    if (item == '(' || item == '{' || item == '[') stack.push(item);
+    else if (item == ')' || item == '}' || item == ']') {
+      if (stack.length == 0) return false;
+
+      const last = stack[stack.length - 1]; // смотрим последнюю, не удаляя
+      if (
+        (last === '(' && item === ')') ||
+        (last === '{' && item === '}') ||
+        (last === '[' && item === ']')
+      ) {
+        stack.pop();
+      } else return false;
+    }
+  }
+  return stack.length === 0;
 }
-arr1 =  [ '(', ')', '(', ')', ')']
-brackets(arr1)
 
+console.log(brackets(['(', ')', '(', ')']));
+console.log(brackets(['(', ')', '(', ')', ')']));
+console.log(brackets(['(', ')', '(', ')', '{', '(', '}', ')', 2, 'a']));
+console.log(brackets(['(', ')', '(', '(', '(', ')', '}', '(', ')', ')']));
 
+//
 console.log(
   `\n 5.Найти самое маленькое число из массива [4, 81, 3, -12, 99, 14].`
 );
