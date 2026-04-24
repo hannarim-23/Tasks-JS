@@ -65,6 +65,30 @@ console.log('3.	Сложнее*: Нарисуйте горизонтальный
 7 8 9 10
 11 12 13 14 15
 */
+{
+  let str = '';
+  let i = 1;
+
+  for (let n = 1; n <= 5; n++) {
+    for (let j = 1; j <= n; j++) {
+      str += `${i++} `;
+    }
+    str += '\n';
+  }
+  console.log(str);
+}
+//2е решение
+{
+  let mas = [];
+  let count = 1;
+  for (let i = 0; i < 5; i++) {
+    mas[i] = [];
+    for (let j = 0; j < i + 1; j++) {
+      mas[i][j] = count++;
+    }
+  }
+  console.log(mas.map((row) => row.join(' ')).join('\n'));
+}
 
 //
 console.log(
@@ -77,23 +101,32 @@ console.log(
 4 8 11 13
 5 9 12 14 15
 */
-/*
-{
-  let n = 0,
-    m = 5;
-  let arr = [];
-  while (n <= 15) {
-    for (let i = 0; i < m; i++) {
-      arr[i] = [];
-      for (let j = 0; j < m; j++) {
-        arr[i][j] = n;
-        n++;
-        console.log('777', arr[i][j]);
-      }
+function drawVerticalTriangle(n) {
+  let result = []; // Наш основной массив ("шкаф"), где будут лежать строки
+
+  // 1. Создаем структуру двумерного массива
+  for (let i = 0; i < n; i++) {
+    result[i] = []; // Создаем пустую "полку" (строку) для каждой итерации
+
+    let currentValue = i + 1; // Первое число в строке всегда i + 1
+    result[i][0] = currentValue;
+
+    // 2. Заполняем остальные элементы в строке (если они есть)
+    for (let j = 1; j <= i; j++) {
+      // 1. Вычисляем шаг для текущего перехода
+      let currentStep = n - j;
+      // 2. Прибавляем его к текущему числу
+      currentValue += currentStep;
+
+      // 3. Сохраняем результат в ячейку
+      result[i][j] = currentValue;
     }
   }
+  // Вывод результата
+  console.log(result.map((row) => row.join(' ')).join('\n'));
 }
-*/
+
+drawVerticalTriangle(5);
 //
 console.log('5.	Креативное задание 1*');
 /*
