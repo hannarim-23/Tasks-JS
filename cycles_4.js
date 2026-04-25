@@ -55,6 +55,42 @@ console.log('2.	Нарисуйте ромб из цифр (будьте вним
         121
          1
 */
+{
+  const n = 10; // Количество строк в верхней половине (включая середину)
+
+  // 1. Рисуем верхнюю часть + середину
+  for (let i = 1; i <= n; i++) {
+    let spaces = ' '.repeat(n - i);
+    let numbers = '';
+
+    //let stars = "*".repeat(2 * i - 1);//
+    // Растем до пика: 1, 2, 3...
+    for (let j = 1; j <= i; j++) {
+      numbers += j % 10;
+    }
+    // Падаем после пика: ...2, 1
+    for (let j = i - 1; j >= 1; j--) {
+      numbers += j % 10;
+    }
+
+    console.log(spaces + numbers);
+  }
+
+  // 2. Рисуем нижнюю часть
+  for (let i = n - 1; i >= 1; i--) {
+    let spaces = ' '.repeat(n - i);
+    let numbers = '';
+
+    for (let j = 1; j <= i; j++) {
+      numbers += j % 10;
+    }
+    for (let j = i - 1; j >= 1; j--) {
+      numbers += j % 10;
+    }
+
+    console.log(spaces + numbers);
+  }
+}
 
 //
 console.log('3.	Сложнее*: Нарисуйте горизонтальный треугольник из цифр');

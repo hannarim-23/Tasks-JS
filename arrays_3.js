@@ -154,13 +154,29 @@ console.log(`Улитка проползет за :  ${days} дней`);
 //
 console.log(` 10.	 Нарисуйте ромб (подсказка: вложенные циклы)`);
 /*
-
   *
  ***
 *****
  ***
   *
   * */
+ {
+  const n = 3; // Количество строк в верхней половине (включая середину)
+
+  // 1. Рисуем верхнюю часть + середину
+  for (let i = 1; i <= n; i++) {
+    let spaces = " ".repeat(n - i);
+    let stars = "*".repeat(2 * i - 1);
+    console.log(spaces + stars);
+  }
+
+  // 2. Рисуем нижнюю часть
+  for (let i = n - 1; i >= 1; i--) {
+    let spaces = " ".repeat(n - i);
+    let stars = "*".repeat(2 * i - 1);
+    console.log(spaces + stars);
+  }
+}
 
 console.log(`11.	 Нарисуйте прямоугольный треугольник `);
 /*
