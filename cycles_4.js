@@ -572,16 +572,63 @@ const arr = (N = 0) => {
   return newArr;
 };
 
-/*
-Дополнительные, более сложные задачи (не обязательно делать):
-https://www.codewars.com/kata/555086d53eac039a2a000083
-https://www.codewars.com/kata/5865918c6b569962950002a1 
-https://www.codewars.com/kata/50654ddff44f800200000007 
-https://www.codewars.com/kata/57cc975ed542d3148f00015b
-https://www.codewars.com/kata/582e4c3406e37fcc770001ad
+//--------Дополнительные, более сложные задачи (не обязательно делать):--------
+//https://www.codewars.com/kata/555086d53eac039a2a000083
+function lovefunc(flower1, flower2) {
+  return flower1 % 2 !== flower2 % 2;
+}
 
-https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/ https://leetcode.com/problems/search-insert-position/ 
-https://leetcode.com/problems/remove-element/ 
-https://leetcode.com/problems/two-sum/description/ 
-https://leetcode.com/problems/merge-sorted-array/description/ 
-*/
+//https://www.codewars.com/kata/5865918c6b569962950002a1
+/*Создайте функцию, которая принимает строку и один символ и возвращает целое число — количество вхождений второго аргумента в первый. Если совпадений не найдено, должно быть возвращено значение 0 .*/
+function strCount(str, letter) {
+  return str.split('').filter((s) => s == letter).length;
+}
+/*
+function strCount(str, letter){  
+  return str.split(letter).length-1
+}*/
+
+//https://www.codewars.com/kata/50654ddff44f800200000007
+//Даны две строки a и b, верните строку вида short+long+short, где более короткая строка находится снаружи, а более длинная — внутри. Строки могут быть разной длины, но могут быть и пустыми ( zero length ).
+function solution(a, b) {
+  if (a.length > b.length) return b + a + b;
+  return a + b + a;
+}
+
+//https://www.codewars.com/kata/57cc975ed542d3148f00015b
+//Вам будет дан массив a и значение x. Все, что вам нужно сделать, — это проверить, содержится ли указанное значение в предоставленном массиве. a может содержать числа или строки. x может быть любым из них. Верните true если значение есть в массиве, false если нет.
+function check(a, x) {
+  return a.includes(x);
+}
+
+//https://www.codewars.com/kata/582e4c3406e37fcc770001ad
+/* Две строки легко объединить таким образом string1 + string2. Другой способ — string1.concat(string2)
+В ES6 появился еще один способ объединения строк. Ваша задача — выяснить, какой именно, и написать функцию, которая будет объединять две строки с пробелом между ними.
++ В этом упражнении .concat() & .join() не допускаются. */
+function joinStrings(string1, string2) {
+  return `${string1} ${string2}`;
+}
+
+//https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+//Для двух строк needle и haystack верните индекс первого вхождения needle в haystack, или -1 если needle не является частью haystack.
+var strStr = function (haystack, needle) {
+  return haystack.indexOf(needle);
+};
+
+// https://leetcode.com/problems/search-insert-position/
+//Для отсортированного массива уникальных целых чисел и заданного целевого значения верните индекс, если целевое значение найдено. Если нет, верните индекс, на котором оно оказалось бы, если бы было вставлено в массив по порядку.
+var searchInsert = function (nums, target) {
+  if (nums.includes(target)) return nums.findIndex((n) => n == target);
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] > target) {
+      return i;
+    }
+  }
+  return nums.length;
+};
+
+
+// https://leetcode.com/problems/remove-element/
+// https://leetcode.com/problems/two-sum/description/
+// https://leetcode.com/problems/merge-sorted-array/description/
