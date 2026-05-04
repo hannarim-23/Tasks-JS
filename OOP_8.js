@@ -234,27 +234,42 @@ class Student extends People {
   }
 }
 class Educator extends People {
+  #baseSalary;  // Приватное поле (инкапсуляция)
   constructor(name, age, gender, baseSalary, businessHours) {
     super(name, age, gender);
-    this.baseSalary = baseSalary;
+    this.#baseSalary = baseSalary;
     this.businessHours = businessHours;
   }
+    // Геттер для получения зарплаты (только чтение!)
+    getBaseSalary() {
+      return this.#baseSalary;
+    }
+    
+    // Сеттер с валидацией (опционально)
+    setBaseSalary(newSalary) {
+      if (newSalary > 0) {
+        this.#baseSalary = newSalary;
+      } else {
+        console.log("Ошибка: зарплата должна быть положительной!");
+      }
+    }
   getMonthlySalary() {
-    return this.baseSalary;
+    return this.#baseSalary;
   }
   getPosition() {
     return 'Учитель';
   }
 }
+
 class Dean extends Educator {
   /*  constructor(name, age, gender, baseSalary, businessHours){//автоматически наследует, если нет изменений
     super (name, age, gender, baseSalary, businessHours);
   }*/ //-	декан - зарплата в 2 раза больше чем у учителей, плюс годовой бонус в размере 1 зарплаты
   getMonthlySalary() {
-    return this.baseSalary * 2;
+    return this.getBaseSalary() * 2;
   }
   getYearlyBonus() {
-    return this.baseSalary;
+    return this.getBaseSalary();
   }
   getPosition() {
     return 'Декан';
@@ -268,10 +283,10 @@ class Director extends Educator {
     super (name, age, gender, baseSalary, businessHours);
   }*/ //	директор школы - зарплата в 1.5 раза больше чем у декана, плюс годовой бонус в размере 2х зарплат
   getMonthlySalary() {
-    return this.baseSalary * 2 * 1.5;
+    return this.getBaseSalary() * 2 * 1.5;
   }
   getYearlyBonus() {
-    return this.baseSalary * 2;
+    return this.getBaseSalary() * 2;
   }
   getPosition() {
     return 'Директор';
@@ -336,7 +351,7 @@ console.log(`Годовой доход директора: ${director.getYearSal
 
 //Лучший студент школы
 console.log('\n' + '='.repeat(50));
-console.log('3. Лучший студент школы (Valedictorian)');
+console.log('3. Лучший студент школы');
 console.log('='.repeat(50));
 
 let bestStudent = students[0];
@@ -350,3 +365,8 @@ console.log(`🏆 ${bestStudent.name}`);
 console.log(`   Курс: ${bestStudent.course}`);
 console.log(`   Специальность: ${bestStudent.speciality}`);
 console.log(`   Средний балл (GPA): ${bestStudent.gpa}`);
+
+
+//const testTeacher = new Educator('Тест', 30, 'М', 5000, 40);
+// ❌ Прямой доступ к приватному полю НЕВОЗМОЖЕН:
+//console.log(testTeacher.#baseSalary); // SyntaxError!
